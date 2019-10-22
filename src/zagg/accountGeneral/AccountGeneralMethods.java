@@ -90,8 +90,7 @@ public class AccountGeneralMethods extends TestBase{
 	}
 	
 	
-	/**********  Registered Products     *****/
-	
+	/**********  Registered Products     *****/	
 	
 	/**  Select pagelimter to 100 products to display.     
 	 * @throws Exception */
@@ -188,11 +187,7 @@ public class AccountGeneralMethods extends TestBase{
 	}
 	
 	
-	
-	
-	/**********  Purchase History    *****/
-	
-	
+	/**********  Purchase History    *****/	
 	public void verifyColumnName() {
 		logInfo("Entered into verifyColumnName() method");
 		List<WebElement> col = driver.findElements(By.xpath(regColumns));
