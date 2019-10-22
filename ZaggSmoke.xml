@@ -25,53 +25,7 @@
 				<include name ="loginWithValidCredentials"/>										
 			</methods>
 		</class>
-		<class name="zagg.prodRegistration.ProductRegistartionTests" >
-		<methods>				
-				<include name="verifyAllFields"/>					
-				<include name="registerProdThruSerialNumber"/>						
-		</methods>			
-		</class>
 		
-		<class name="zagg.warrantReplacement.WarrantReplacementTests" >
-			<methods>			
-				 <include name ="validateWRScreens"/>	
-				 <include name ="WR_replaceUpgradeProduct"/>							
-			</methods>
-		</class>
-		
-		<class name="zagg.accountGeneral.PurchaseHistory"/>
-		<class name="zagg.accountGeneral.NewsSubscriptionTests">
-			<methods>
-				<include name= "newsSubcrp_TypePreferences"/>
-			</methods>		
-		</class>
-		<class name="zagg.prodRegistration.PRToolTipTests">
-			<methods>			
-				 <include name = "PR_WarrantyExpiredProduct"/>
-				 <include name = "PR_OutOfStockForReplacement"/>						
-			</methods>
-		</class>
-		<class name="zagg.shop.shoppingTests" >
-		 	<methods>
-			 	<include name = "shop_placeOrderProduct"/>
-			  	<include name = "shop_placeOrderWithAmazonPay"/>
-			  	<include name = "shop_placeOrderWithoutUser"/>			 
-			 </methods>	
-		</class>
-	    <class name="zagg.prodRegistration.UK_EU_ProductRegistartionTests" >
-			<methods>
-				 <include name = "loginIntoUKCustomer"/>
-				 <include name = "UK_RegisterProdThruSerialNumberForUK"/>
-				 <include name = "loginAsEUCustomer"/>
-				 <include name = "EU_RegisterProdThruSerialNumberForEU"/>			
-			 </methods>			
-		</class>			
-		 <class name="zagg.shop.UK_ShoppingTests" >
-			 <methods>
-			 	<include name = "loginIntoUKCustomer"/>
-			  	<include name = "UK_PlaceOrderWithCreditCard"/>		 
-			 </methods>	
-		 </class>
 		 
 		  </classes>
 	</test>
