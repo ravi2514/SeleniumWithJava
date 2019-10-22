@@ -165,7 +165,7 @@
          <version>2.20</version>
         <configuration>
           <suiteXmlFiles>
-            <file>ZaggPhase1.xml</file>            
+            <file>ZaggSmoke.xml</file>            
           </suiteXmlFiles>
           <properties>
             <property>
@@ -205,15 +205,8 @@
 					<receivers>
 						<!-- To Email address -->
 						<receiver>ravi.tulasi@xelits.com</receiver>	
-						<receiver>prasad.vinukonda@xelits.com</receiver>
-						<receiver>doug.hill@zagg.com</receiver>
-						<receiver>steve.gagon@zagg.com</receiver>
-						<receiver>madan.kommi@zagg.com</receiver>
-						<receiver>mike.bird@zagg.com</receiver>
-						<receiver>kamal.thota@xelits.com</receiver>						
-						<receiver>michael.dey@zagg.com</receiver>
-						
-																
+						<receiver>urvesh.singh@xelits.com</receiver>	
+																					
 					</receivers>					
 					<fileSets>
 					<fileSet>					
