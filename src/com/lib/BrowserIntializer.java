@@ -38,8 +38,7 @@ public class BrowserIntializer extends ExtentReportNG{
 		    	  System.setProperty("webdriver.gecko.driver",gecko_driver);
 		    	FirefoxProfile fprofile = new FirefoxProfile();
 		        fprofile.setAcceptUntrustedCertificates(true); 
-		        fprofile.setAssumeUntrustedCertificateIssuer(false);
-		       
+		        fprofile.setAssumeUntrustedCertificateIssuer(false);	       
 		      
 		        // Pass fprofile parameter In webdriver to use preferences to download
 		        // file.
