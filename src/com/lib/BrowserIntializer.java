@@ -35,7 +35,7 @@ public class BrowserIntializer extends ExtentReportNG{
 
 		    try {
 		      if (browser.equalsIgnoreCase("firefox")) {
-		    	  System.setProperty("webdriver.gecko.driver",gecko_driver);
+		    	  System.setProperty("webdriver.gecko.driver",gecko_driver_linux);
 		    	FirefoxProfile fprofile = new FirefoxProfile();
 		        fprofile.setAcceptUntrustedCertificates(true); 
 		        fprofile.setAssumeUntrustedCertificateIssuer(false);
