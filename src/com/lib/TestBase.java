@@ -51,7 +51,7 @@ import org.testng.asserts.SoftAssert;
 import com.google.common.base.Function;
 import com.relevantcodes.extentreports.ExtentTest;
 
-public class TestBase extends BrowserIntializer{
+public class TestBase extends BrowserStack{
 protected static final Log logger = LogFactory.getLog(TestBase.class);
     
 	WebElement element, toElement;
@@ -74,7 +74,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	/*webdriver waits for given Seconds*/
 	public void implicityWaits(int i ) throws Exception{
 	logInfo("Entered into implicityWaits method");
-		driver().manage().timeouts().implicitlyWait(i,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(i,TimeUnit.SECONDS);
 		}
 	
 	
@@ -94,7 +94,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	public void validateHomeTitle(String expTitle) throws Exception {
 		waitOnSpinner();
 		wdWait("cssSelector", newAccTitle);
-		String actTitle = driver().findElement(org.openqa.selenium.By.cssSelector(newAccTitle)).getText();
+		String actTitle = driver.findElement(org.openqa.selenium.By.cssSelector(newAccTitle)).getText();
 		System.out.println(actTitle);
 		Assert.assertEquals(actTitle, expTitle);
 		wdWait("cssSelector", allowCookies);
@@ -107,7 +107,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	 * @throws Exception **/
 	public void validatePRTitle(String expTitle) throws Exception {
 		wdWait("cssSelector", PRTitle);
-		String actTitle = driver().findElement(org.openqa.selenium.By.cssSelector(PRTitle)).getText();
+		String actTitle = driver.findElement(org.openqa.selenium.By.cssSelector(PRTitle)).getText();
 		Assert.assertEquals(actTitle, expTitle);
 	}
 	
@@ -155,7 +155,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		// This method is used to Wait for a element to present.		
 		public void wdWait_original(String Bytype,String locator) throws Exception{			
 			try{
-				Wait<WebDriver> wait = new FluentWait<WebDriver>(driver())
+				Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 					 .withTimeout(15, TimeUnit.SECONDS)
 		    		 .pollingEvery(2, TimeUnit.SECONDS);		   			   		 
 				switch(Bytype){
@@ -195,7 +195,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	// This method is used to Maximize the browser window.	
 	public void maximizeBrowser() throws Exception{		
 		try{	
-			driver().manage().window().maximize();
+			driver.manage().window().maximize();
 		}
 		catch(Exception e){
 			logInfo("Failed!! unable to maximize the browser window");		
@@ -205,7 +205,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	
 	// This method is used to Wait for a element to present.		
 			public void waitOnLoadingSpinner(int InSeconds) throws Exception{						
-				WebDriverWait wait = new WebDriverWait(driver(), InSeconds);
+				WebDriverWait wait = new WebDriverWait(driver, InSeconds);
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(ByXPath.xpath("//div[@class='loading-mask'][@style='display: block;']//img")));
 			}
 	
@@ -227,22 +227,22 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));				
+				element = driver.findElement(ByClassName.className(locator));				
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			case "linkText":
-				element = driver().findElement(ByLinkText.linkText(locator));
+				element = driver.findElement(ByLinkText.linkText(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to clickOnElement."+locator);
@@ -264,22 +264,22 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			case "linkText":
-				element = driver().findElement(ByLinkText.linkText(locator));
+				element = driver.findElement(ByLinkText.linkText(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to submitElement."+locator);
@@ -302,19 +302,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 			try{
 				switch(Bytype){			
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to getText."+locator);
@@ -334,19 +334,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 			String acctAtrribute = null;			
 				switch(Bytype){
 				case "xpath":
-					element = driver().findElement(ByXPath.xpath(locator));
+					element = driver.findElement(ByXPath.xpath(locator));
 					break;
 				case "id":
-					element = driver().findElement(ById.id(locator));
+					element = driver.findElement(ById.id(locator));
 					break;
 				case "name":
-					element = driver().findElement(ByName.name(locator));
+					element = driver.findElement(ByName.name(locator));
 					break;
 				case "className":
-					element = driver().findElement(ByClassName.className(locator));
+					element = driver.findElement(ByClassName.className(locator));
 					break;
 				case "cssSelector":
-					element = driver().findElement(ByCssSelector.cssSelector(locator));
+					element = driver.findElement(ByCssSelector.cssSelector(locator));
 					break;
 				default :
 					System.out.println("Invalid type passed to getText."+locator);
@@ -378,19 +378,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		String acctText = null;			
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to getText."+locator);
@@ -409,19 +409,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 			
 				switch(Bytype){
 				case "xpath":
-					element = driver().findElement(ByXPath.xpath(locator));
+					element = driver.findElement(ByXPath.xpath(locator));
 					break;
 				case "id":
-					element = driver().findElement(ById.id(locator));
+					element = driver.findElement(ById.id(locator));
 					break;
 				case "name":
-					element = driver().findElement(ByName.name(locator));
+					element = driver.findElement(ByName.name(locator));
 					break;
 				case "className":
-					element = driver().findElement(ByClassName.className(locator));
+					element = driver.findElement(ByClassName.className(locator));
 					break;
 				case "cssSelector":
-					element = driver().findElement(ByCssSelector.cssSelector(locator));
+					element = driver.findElement(ByCssSelector.cssSelector(locator));
 					break;
 				default :
 					System.out.println("Invalid type passed to getText."+locator);
@@ -435,19 +435,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		String acctAttrb = null;			
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to getText."+locator);
@@ -500,22 +500,22 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = (new WebDriverWait(driver(), 20)).until(ExpectedConditions.visibilityOfElementLocated(ByXPath.xpath(locator)));
+				element = (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfElementLocated(ByXPath.xpath(locator)));
 				break;
 			case "id":
-				element = (new WebDriverWait(driver(), 20)).until(ExpectedConditions.visibilityOfElementLocated(ById.id(locator)));
+				element = (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfElementLocated(ById.id(locator)));
 				break;
 			case "name":
-				element = (new WebDriverWait(driver(), 20)).until(ExpectedConditions.visibilityOfElementLocated(ByName.name(locator)));
+				element = (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfElementLocated(ByName.name(locator)));
 				break;
 			case "className":
-				element = (new WebDriverWait(driver(), 20)).until(ExpectedConditions.visibilityOfElementLocated(ByClassName.className(locator)));
+				element = (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfElementLocated(ByClassName.className(locator)));
 				break;
 			case "cssSelector":
-				element = (new WebDriverWait(driver(), 20)).until(ExpectedConditions.visibilityOfElementLocated(ByCssSelector.cssSelector(locator)));
+				element = (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfElementLocated(ByCssSelector.cssSelector(locator)));
 				break;
 			case "linkText":
-				element = (new WebDriverWait(driver(), 20)).until(ExpectedConditions.visibilityOfElementLocated(ByLinkText.linkText(locator)));
+				element = (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfElementLocated(ByLinkText.linkText(locator)));
 				break;
 			default :
 				System.out.println("Invalid type passed to verifyElementPresent."+locator);
@@ -536,7 +536,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	public boolean verifyLinkPresent(String expValue) throws Exception{	
 		 boolean flag = false;
 		try{
-		   	List<WebElement> links = driver().findElements(ByTagName.tagName("a"));
+		   	List<WebElement> links = driver.findElements(ByTagName.tagName("a"));
 	    	for(WebElement x : links){
 	    		String actValue = x.getText();
 	    		if(actValue.contains(expValue)){
@@ -560,19 +560,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to clickOnButton."+locator);
@@ -592,32 +592,32 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	// This method is used to double click on a specified element.	
 	public void doubleClick(String Bytype, String locator ) throws Exception{
 		try{
-			Actions action = new Actions(driver());
+			Actions action = new Actions(driver);
 			
 			switch(Bytype){
 			case "xpath":
-				action.moveToElement(driver().findElement(ByXPath.xpath(locator))).doubleClick().build().perform();
+				action.moveToElement(driver.findElement(ByXPath.xpath(locator))).doubleClick().build().perform();
 				break;
 			case "id":
-				action.moveToElement(driver().findElement(ById.id(locator))).doubleClick().build().perform();
+				action.moveToElement(driver.findElement(ById.id(locator))).doubleClick().build().perform();
 				break;
 			case "name":
-				action.moveToElement(driver().findElement(ByName.name(locator))).doubleClick().build().perform();
+				action.moveToElement(driver.findElement(ByName.name(locator))).doubleClick().build().perform();
 				break;
 			case "className":
-				action.moveToElement(driver().findElement(ByClassName.className(locator))).doubleClick().build().perform();
+				action.moveToElement(driver.findElement(ByClassName.className(locator))).doubleClick().build().perform();
 				break;
 			case "cssSelector":
-				action.moveToElement(driver().findElement(ByCssSelector.cssSelector(locator))).doubleClick().build().perform();
+				action.moveToElement(driver.findElement(ByCssSelector.cssSelector(locator))).doubleClick().build().perform();
 				break;
 			case "linkText":
-				action.moveToElement(driver().findElement(ByLinkText.linkText(locator))).doubleClick().build().perform();
+				action.moveToElement(driver.findElement(ByLinkText.linkText(locator))).doubleClick().build().perform();
 				break;
 			case "tagName":
-				action.moveToElement(driver().findElement(ByTagName.tagName(locator))).doubleClick().build().perform();
+				action.moveToElement(driver.findElement(ByTagName.tagName(locator))).doubleClick().build().perform();
 				break;
 			case "partialLinkText":
-				action.moveToElement(driver().findElement(ByPartialLinkText.partialLinkText(locator))).doubleClick().build().perform();
+				action.moveToElement(driver.findElement(ByPartialLinkText.partialLinkText(locator))).doubleClick().build().perform();
 				break;
 			default :
 				System.out.println("Invalid type passed to clickOnButton."+locator);
@@ -636,22 +636,22 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			case "tagName":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to clickOnTextArea."+locator);
@@ -676,19 +676,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to inputText."+locator);
@@ -708,19 +708,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to inputTextClear."+locator);
@@ -742,22 +742,22 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "tagName":
-				element = driver().findElement(ByTagName.tagName(locator));
+				element = driver.findElement(ByTagName.tagName(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to selectFromDropdown."+locator);
@@ -789,22 +789,22 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 			try{
 				switch(Bytype){
 				case "xpath":
-					element = driver().findElement(ByXPath.xpath(locator));
+					element = driver.findElement(ByXPath.xpath(locator));
 					break;
 				case "id":
-					element = driver().findElement(ById.id(locator));
+					element = driver.findElement(ById.id(locator));
 					break;
 				case "name":
-					element = driver().findElement(ByName.name(locator));
+					element = driver.findElement(ByName.name(locator));
 					break;
 				case "tagName":
-					element = driver().findElement(ByTagName.tagName(locator));
+					element = driver.findElement(ByTagName.tagName(locator));
 					break;
 				case "className":
-					element = driver().findElement(ByClassName.className(locator));
+					element = driver.findElement(ByClassName.className(locator));
 					break;
 				case "cssSelector":
-					element = driver().findElement(ByCssSelector.cssSelector(locator));
+					element = driver.findElement(ByCssSelector.cssSelector(locator));
 					break;
 				default :
 					System.out.println("Invalid type passed to selectFromDropdown."+locator);
@@ -832,22 +832,22 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "tagName":
-				element = driver().findElement(ByTagName.tagName(locator));
+				element = driver.findElement(ByTagName.tagName(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to selectFromDropdown."+locator);
@@ -871,19 +871,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		try{
 			switch(Bytype){
 			case "xpath":
-				element = driver().findElement(ByXPath.xpath(locator));
+				element = driver.findElement(ByXPath.xpath(locator));
 				break;
 			case "id":
-				element = driver().findElement(ById.id(locator));
+				element = driver.findElement(ById.id(locator));
 				break;
 			case "name":
-				element = driver().findElement(ByName.name(locator));
+				element = driver.findElement(ByName.name(locator));
 				break;
 			case "className":
-				element = driver().findElement(ByClassName.className(locator));
+				element = driver.findElement(ByClassName.className(locator));
 				break;
 			case "cssSelector":
-				element = driver().findElement(ByCssSelector.cssSelector(locator));
+				element = driver.findElement(ByCssSelector.cssSelector(locator));
 				break;
 			default :
 				System.out.println("Invalid type passed to selectRadioOrCheckbox."+locator);
@@ -914,9 +914,9 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	// This method is used to wait until page being loaded.	
 	public void waitForPageToLoad()
 	  {
-	     (new WebDriverWait(driver(), DEFAULT_WAIT_TIME)).until(new ExpectedCondition<Boolean>() {
+	     (new WebDriverWait(driver, DEFAULT_WAIT_TIME)).until(new ExpectedCondition<Boolean>() {
 	      public Boolean apply(WebDriver d) {
-	        return (((org.openqa.selenium.JavascriptExecutor) driver()).executeScript("return document.readyState").equals("complete"));
+	        return (((org.openqa.selenium.JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
 	      }
 	    });
 	 }
@@ -929,22 +929,22 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 			try{
 				switch(Bytype){
 				case "xpath":
-					element = driver().findElement(ByXPath.xpath(locator));
+					element = driver.findElement(ByXPath.xpath(locator));
 					break;
 				case "id":
-					element = driver().findElement(ById.id(locator));
+					element = driver.findElement(ById.id(locator));
 					break;
 				case "name":
-					element = driver().findElement(ByName.name(locator));
+					element = driver.findElement(ByName.name(locator));
 					break;
 				case "tagName":
-					element = driver().findElement(ByTagName.tagName(locator));
+					element = driver.findElement(ByTagName.tagName(locator));
 					break;
 				case "className":
-					element = driver().findElement(ByClassName.className(locator));
+					element = driver.findElement(ByClassName.className(locator));
 					break;
 				case "cssSelector":
-					element = driver().findElement(ByCssSelector.cssSelector(locator));
+					element = driver.findElement(ByCssSelector.cssSelector(locator));
 					break;
 				default :
 					System.out.println("Invalid type passed to selectFromDropdown."+locator);
@@ -967,29 +967,29 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		 // This method is used to scroll the screen to particular object.
 		 public void scrollDown(String Bytype, String locator) throws Exception{
 			 try{
-				 js = (JavascriptExecutor)driver();        
+				 js = (JavascriptExecutor)driver;        
 				 
 				switch(Bytype){
 					case "xpath":
-						element = driver().findElement(ByXPath.xpath(locator));
+						element = driver.findElement(ByXPath.xpath(locator));
 						break;
 					case "id":
-						element = driver().findElement(ById.id(locator));
+						element = driver.findElement(ById.id(locator));
 						break;
 					case "name":
-						element = driver().findElement(ByName.name(locator));
+						element = driver.findElement(ByName.name(locator));
 						break;
 					case "className":
-						element = driver().findElement(ByClassName.className(locator));
+						element = driver.findElement(ByClassName.className(locator));
 						break;
 					case "cssSelector":
-						element = driver().findElement(ByCssSelector.cssSelector(locator));
+						element = driver.findElement(ByCssSelector.cssSelector(locator));
 						break;
 					case "linkText":
-						element = driver().findElement(ByLinkText.linkText(locator));
+						element = driver.findElement(ByLinkText.linkText(locator));
 						break;	
 					case "partialLinkText":
-						element = driver().findElement(ByPartialLinkText.partialLinkText(locator));
+						element = driver.findElement(ByPartialLinkText.partialLinkText(locator));
 						break;	
 					default :
 						System.out.println("Invalid type passed to clickOnButton."+locator);
@@ -1008,13 +1008,13 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		 			
 		// This method is being used to accept javascript alerts / confirmations		
 		public void confirmAlert(){			
-			Alert alert = driver().switchTo().alert();
+			Alert alert = driver.switchTo().alert();
 			alert.accept();
 			}
 			
 			// This method is being used to dismiss javascript alerts / confirmations		
 			public void dismissAlert() throws Exception{			
-			Alert alert = driver().switchTo().alert();
+			Alert alert = driver.switchTo().alert();
 			alert.dismiss();			
 			}
 			
@@ -1022,39 +1022,39 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		 // This method is used to hover mouse on object.	
 	  	 public void hoverOnElementAndClick(String Bytype, String locator) throws Exception{
 			 try{				 
-				 Actions builder = new Actions(driver());				
+				 Actions builder = new Actions(driver);				
 				switch(Bytype){
 					case "xpath":
-						element = driver().findElement(ByXPath.xpath(locator));
+						element = driver.findElement(ByXPath.xpath(locator));
 						builder.moveToElement(element).build().perform();
 						builder.click();
 						break;
 					case "id":
-						element = driver().findElement(ById.id(locator));
+						element = driver.findElement(ById.id(locator));
 						builder.moveToElement(element).build().perform();
 						builder.click();
 						break;
 					case "name":
-						element = driver().findElement(ByName.name(locator));
+						element = driver.findElement(ByName.name(locator));
 						builder.moveToElement(element).build().perform();
 						builder.click();
 						break;
 					case "className":
-						element = driver().findElement(ByClassName.className(locator));
+						element = driver.findElement(ByClassName.className(locator));
 						builder.moveToElement(element).build().perform();
 						builder.click();
 						break;
 					case "cssSelector":
-						element = driver().findElement(ByCssSelector.cssSelector(locator));
+						element = driver.findElement(ByCssSelector.cssSelector(locator));
 						builder.moveToElement(element).build().perform();
 						builder.click();
 						break;
 					case "linkText":
-						element = driver().findElement(ByLinkText.linkText(locator));
+						element = driver.findElement(ByLinkText.linkText(locator));
 						builder.moveToElement(element).build().perform();
 						builder.click();
 					case "partialLinkText":
-						element = driver().findElement(ByPartialLinkText.partialLinkText(locator));
+						element = driver.findElement(ByPartialLinkText.partialLinkText(locator));
 						builder.moveToElement(element).build().perform();
 						builder.click();	
 					default :
@@ -1070,7 +1070,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	 
 	 //This method is used drag and drop the webElement from location another location. 	 
 	 public void dragAndDropAction(WebElement from, WebElement to) throws Exception{				
-			Actions builder = new Actions(driver());
+			Actions builder = new Actions(driver);
 			Action drag = builder.clickAndHold(from).
 					moveToElement(to).
 					release(to).
@@ -1127,7 +1127,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 	
 		
 		public void  nav2admin() throws Exception {
-			driver().navigate().to(appUrl+"index.php/admin/catalog/product_attribute/"); 
+			driver.navigate().to(appUrl+"index.php/admin/catalog/product_attribute/"); 
 			implicityWaits(3);
 		}
 		
@@ -1246,14 +1246,14 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		/** Navigates to home page*/
 		public void homePage() throws Exception {
 	        logInfo("Enter into homePage method");
-	        driver().navigate().to(appUrl);
+	        driver.navigate().to(appUrl);
 	        
 		}
 		
 		/** Navigates to Product Registration Screen*/
 		public void nav2AccountDashboard(String country) throws Exception {
 	        logInfo("Enter into nav2AccountDashboard() method");
-	        driver().navigate().to(appUrl+"en_"+country+"/customer/account/");       
+	        driver.navigate().to(appUrl+"en_"+country+"/customer/account/");       
 	        
 	        
 		}
@@ -1266,7 +1266,7 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 			boolean isTabPresent= false;
 			implicityWaits(05);
 			wdWait("cssSelector", sideList);
-			List <WebElement> lis = driver().findElements(ByCssSelector.cssSelector(sideList));
+			List <WebElement> lis = driver.findElements(ByCssSelector.cssSelector(sideList));
 			for(WebElement allTabs:lis) {
 				String tab= allTabs.getText().trim();				
 				if(tab.equalsIgnoreCase(tabName)) {
@@ -1287,19 +1287,19 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		
 		public void handleAmazonPayment() throws Exception {
 			logInfo("Enter into handleAmazonPayment() method");	
-			Actions act = new Actions (driver());
+			Actions act = new Actions (driver);
 			waitOnSpinner();
 			scrollDown("cssSelector", ccRadio);
 			wdWait("cssSelector", ccRadio);
 			clickOnObject("cssSelector", total);
 			
-			WebElement ccRad= driver().findElement(org.openqa.selenium.By.cssSelector(ccRadio));
+			WebElement ccRad= driver.findElement(org.openqa.selenium.By.cssSelector(ccRadio));
 			act.moveToElement(ccRad).doubleClick().build().perform();
 			wdWait("cssSelector", amazonRadio);	
 			scrollDown("cssSelector", amazonRadio);
-			WebElement amzRad= driver().findElement(org.openqa.selenium.By.cssSelector(amazonRadio));
+			WebElement amzRad= driver.findElement(org.openqa.selenium.By.cssSelector(amazonRadio));
 			act.moveToElement(amzRad).doubleClick().build().perform();
-			WebElement amzIcon= driver().findElement(org.openqa.selenium.By.cssSelector(amzonPayIcon));
+			WebElement amzIcon= driver.findElement(org.openqa.selenium.By.cssSelector(amzonPayIcon));
 			act.moveToElement(amzIcon).doubleClick().build().perform();
 			waitOnSpinner();
 			handleAmzonWindow();
@@ -1310,15 +1310,15 @@ protected static final Log logger = LogFactory.getLog(TestBase.class);
 		
 		public void handleAmzonWindow() throws Exception{
 			logInfo("Enter into handleAmzonWindow() method");	
-			String wndBeforeWindow = driver().getWindowHandle();	
-			for(String w : driver().getWindowHandles()){
+			String wndBeforeWindow = driver.getWindowHandle();	
+			for(String w : driver.getWindowHandles()){
 				if(!w.equalsIgnoreCase(wndBeforeWindow)){
-					driver().switchTo().window(w);
+					driver.switchTo().window(w);
 					clickOnObject("cssSelector", amzonEmail);
 					enterText("cssSelector", amzonEmail,amzonUser);
 					enterText("cssSelector", amzonPassword,amzonPwd);
 					submitObject("cssSelector", amzonPassword);
-					driver().switchTo().window(wndBeforeWindow);
+					driver.switchTo().window(wndBeforeWindow);
 					System.out.println(driver.getCurrentUrl());
 					
 				}

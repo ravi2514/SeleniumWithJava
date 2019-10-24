@@ -27,7 +27,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 		logInfo("Entered into selectWarrentForProduct() method.");			
 		nav2AccountDashboard();
 		selectLeftTab(myDash);
-		List<WebElement> prods= driver().findElements(By.cssSelector(prodName));
+		List<WebElement> prods= driver.findElements(By.cssSelector(prodName));
 		int prodSize = prods.size();
 		boolean isPresent=false;
 		int i;
@@ -39,14 +39,14 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 				System.out.println(i + " i valive ");
 			}
 			
-			WebElement name = driver().findElement(By.cssSelector(prodNameBfr+i+prodNameAfr));
+			WebElement name = driver.findElement(By.cssSelector(prodNameBfr+i+prodNameAfr));
 			String actName= name.getText();
 			System.out.println("prods"+actName);
 			if(actName.equalsIgnoreCase(productName)) {
 				isPresent=true;
 				clickOnObject("cssSelector", prodNameBfr+i+replaceOpt);
 				selectFromDropdown("cssSelector", prodNameBfr+i+replaceOpt, "byIndex", "1");
-//				WebElement replcment = driver().findElement(By.cssSelector(prodNameBfr+1+replaceOpt));
+//				WebElement replcment = driver.findElement(By.cssSelector(prodNameBfr+1+replaceOpt));
 //				replcment.sendKeys(Keys.DOWN);				
 //				replcment.click();
 				clickOnObject("cssSelector", prodNameBfr+i+replaceOpt);
@@ -78,7 +78,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 	/***Verifies checkout status Bar at top***/
 	public void checkOutStatusBar() {
 		logInfo("Entered into checkOutStatusBar() method.");
-		List <WebElement> status = driver().findElements(By.cssSelector(chkStatus));
+		List <WebElement> status = driver.findElements(By.cssSelector(chkStatus));
 		int statusSize = status.size();
 		if(statusSize==2) {
 			for (WebElement st : status) {
@@ -113,7 +113,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 		setAttributeOptionsInProperty(warrantReasons, setterNamed+(j+1), expectedReasons[j]);
 		}
 		
-		List<WebElement>reasonOpt = driver().findElements(By.cssSelector(rsnOptions));
+		List<WebElement>reasonOpt = driver.findElements(By.cssSelector(rsnOptions));
 		int arraySize=reasonOpt.size();
 		if(arraySize==0) {			
 			Assert.assertNull("It should be drop down with reasons");
@@ -125,7 +125,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 				wdWait("cssSelector", rsnOptions);				
 				for(int i=1;i<=arraySize;i++) {						
 				    expectedReason = getAttributeOptionsInProperty(warrantReasons, setterNamed+i);				 
-					WebElement options= driver().findElement(By.cssSelector(optresnBfr+i+")"));
+					WebElement options= driver.findElement(By.cssSelector(optresnBfr+i+")"));
         			String optReasons = options.getText().trim();        			
         			if(expectedReason.equalsIgnoreCase(optReasons)) {
         				isReasonFound=true;        				
@@ -146,7 +146,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 	 * @throws Exception *****/
 	public void selectReasonFromDropdown(String expectedReason) throws Exception {
 		logInfo("Entered into getReasons() method.");		
-		List<WebElement>reasonOpt = driver().findElements(By.cssSelector(rsnOptions));
+		List<WebElement>reasonOpt = driver.findElements(By.cssSelector(rsnOptions));
 		int arraySize=reasonOpt.size();
 		if(arraySize==0) {
 			Assert.assertNotNull("Its a text box");
@@ -180,15 +180,15 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 		wdWait("cssSelector", shipMthdList);
 		waitOnSpinner();
 		implicityWaits(5);
-		List<WebElement> shipMethods = driver().findElements(By.cssSelector(shipMthdList));
+		List<WebElement> shipMethods = driver.findElements(By.cssSelector(shipMthdList));
 		for (int i=1; i<=shipMethods.size();i++) {
-			WebElement name = driver().findElement(By.cssSelector(shipMthdListBfr+i+shipMthdListAfr));
+			WebElement name = driver.findElement(By.cssSelector(shipMthdListBfr+i+shipMthdListAfr));
 			scrollDown("cssSelector", shipMthdListBfr+i+shipMthdListAfr);
 			String metdName = name.getText().trim();
 			System.out.println("metdName "+metdName);
 			if(metdName.equalsIgnoreCase(methodName)) {
 				isPresent=true;
-				WebElement chkBox = driver().findElement(By.cssSelector(shipMthdListBfr+i+shippingRadio));
+				WebElement chkBox = driver.findElement(By.cssSelector(shipMthdListBfr+i+shippingRadio));
 				JavascriptExecutor js = (JavascriptExecutor)driver; 
 				js.executeScript("arguments[0].click();", chkBox);
 				//chkBox.click();
@@ -238,7 +238,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 		clickOnObject("cssSelector", ccText);
 		enterText("cssSelector", ccText, ccNumber);
 		clickOnObject("cssSelector", monthDP);
-		List<WebElement> mon = driver().findElements(By.cssSelector(month));
+		List<WebElement> mon = driver.findElements(By.cssSelector(month));
 		int size = mon.size();		
 		for(WebElement months:mon) {
 			String montName= months.getText().trim();
@@ -248,7 +248,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 			}			
 		}	
 		clickOnObject("cssSelector", yearDP);
-		List<WebElement> yers = driver().findElements(By.cssSelector(year));
+		List<WebElement> yers = driver.findElements(By.cssSelector(year));
 		for(WebElement years:yers) {
 			String yearNumb= years.getText().trim();
 			if(yearNumb.equalsIgnoreCase("2022")) {				
@@ -275,18 +275,18 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 	
 	public void handleCCPayment() throws Exception{
 		logInfo("Entered into creditCardDetails() method.");
-		Actions act = new Actions (driver());
+		Actions act = new Actions (driver);
 		wdWait("cssSelector", ccRadio);
 		clickOnObject("cssSelector", total);
 		clickOnObject("cssSelector", ccFrame);
 		String text = getText("cssSelector", ccLabel);
 		clickOnObject("cssSelector", ccLabel);
-		WebElement ccRad= driver().findElement(org.openqa.selenium.By.cssSelector(ccRadio));
+		WebElement ccRad= driver.findElement(org.openqa.selenium.By.cssSelector(ccRadio));
 		act.moveToElement(ccRad).doubleClick().build().perform();
 		clickOnObject("cssSelector", ccText);
 		enterText("cssSelector", ccText, ccNumber);
 		clickOnObject("cssSelector", monthDP);
-		List<WebElement> mon = driver().findElements(By.cssSelector(month));
+		List<WebElement> mon = driver.findElements(By.cssSelector(month));
 		int size = mon.size();		
 		for(WebElement months:mon) {
 			String montName= months.getText().trim();
@@ -296,7 +296,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 			}			
 		}		
 		clickOnObject("cssSelector", yearDP);
-		List<WebElement> yers = driver().findElements(By.cssSelector(year));
+		List<WebElement> yers = driver.findElements(By.cssSelector(year));
 		for(WebElement years:yers) {
 			String yearNumb= years.getText().trim();
 			if(yearNumb.equalsIgnoreCase("2022")) {				
@@ -361,15 +361,15 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 		waitOnSpinner();
 		Thread.sleep(4000);
 		wdWait("cssSelector", ordIdList);
-		List<WebElement> ords = driver().findElements(By.cssSelector(ordIdList));
+		List<WebElement> ords = driver.findElements(By.cssSelector(ordIdList));
 		boolean isOrderPresent= false;
 		for(int i=1; i<=ords.size();i++) {
-			WebElement order = driver().findElement(By.cssSelector(ordIdBfr+i+ordIdAfr));
+			WebElement order = driver.findElement(By.cssSelector(ordIdBfr+i+ordIdAfr));
 			String orderId= order.getText().trim();
 			System.out.println("Act orderId "+orderId);
 			if(orderId.equalsIgnoreCase(expOrdId)) {
 				isOrderPresent=true;				
-				String status = driver().findElement(By.cssSelector(ordIdBfr+i+ordStatusAfr)).getText().trim();
+				String status = driver.findElement(By.cssSelector(ordIdBfr+i+ordStatusAfr)).getText().trim();
 				if(!status.equalsIgnoreCase("Suspected Fraud")) {
 					order.click();
 				}			
@@ -383,7 +383,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 	
 	public void orderIdTabsInAdmin(String tabName) {
 		logInfo("Entered into orderIdTabsInAdmin() method.");
-		List<WebElement> tabs= driver().findElements(By.cssSelector(ordIdTabs));
+		List<WebElement> tabs= driver.findElements(By.cssSelector(ordIdTabs));
 		boolean isTabPresent= false;
 		for(WebElement tabbing :tabs) {
 			String name= tabbing.getText().trim();			
@@ -404,7 +404,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 		waitOnSpinner();
 		wdWait("cssSelector", ordIdTabs);
 		scrollDown("cssSelector", ordIdTabs);
-		List<WebElement> tabs= driver().findElements(By.cssSelector(ordIdTabs));
+		List<WebElement> tabs= driver.findElements(By.cssSelector(ordIdTabs));
 		boolean isTabPresent= false;
 		for(WebElement tabbing :tabs) {
 			String name= tabbing.getText().trim();			
@@ -595,7 +595,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 	/****In Options 2nd screen , validate titles of each section.*****/
 	public void options2ndScreenTitles(String expTitle) {
 		logInfo("Entered into options2ndScreenTitles() method.");
-		List<WebElement> titles = driver().findElements(By.xpath(revTitles));
+		List<WebElement> titles = driver.findElements(By.xpath(revTitles));
 		boolean isPresent=false;
 		for(WebElement title:titles) {
 			String eachTitle = title.getText().trim();
@@ -713,14 +713,14 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 //	public void editCustomer(String custEmail) throws Exception {
 //		logInfo("Entered into editCustomer() method.");
 //		wdWait("cssSelector", customerRows);
-//		List<WebElement> rows = driver().findElements(By.cssSelector(customerRows));
+//		List<WebElement> rows = driver.findElements(By.cssSelector(customerRows));
 //		int noOfRows = rows.size();
 //		System.out.println("noOfRows "+noOfRows);
 //		for (int i=1;i<=noOfRows;i++) {
-//			String email= driver().findElement(By.cssSelector(emailBfr+i+emailAft)).getText().trim();
+//			String email= driver.findElement(By.cssSelector(emailBfr+i+emailAft)).getText().trim();
 //			System.out.println("email"+email);
 //			if(email.equalsIgnoreCase(custEmail)) {
-//				WebElement editCust = driver().findElement(By.cssSelector(emailBfr+i+editAft));
+//				WebElement editCust = driver.findElement(By.cssSelector(emailBfr+i+editAft));
 //				editCust.click();
 //				waitOnSpinner();
 //				break;
@@ -740,14 +740,14 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 		String loginCustomer= getText("xpath", loginAsCustomerTab);
 		System.out.println("tabs "+loginCustomer);
 		if(loginCustomer.equalsIgnoreCase("Login as Customer")) {
-			WebElement cust = driver().findElement(By.xpath(loginAsCustomerTab));
+			WebElement cust = driver.findElement(By.xpath(loginAsCustomerTab));
 			Actions act = new Actions(driver);
 			act.click(cust).build().perform();
 			System.out.println("suceessasa");
 			waitOnSpinner();
 			driver.close();
 			//act.moveToElement(cust).doubleClick().build().perform();
-			//driver().navigate().to(appUrl+"en_"+ +"/customer/account/");			
+			//driver.navigate().to(appUrl+"en_"+ +"/customer/account/");			
 		}
 		
 	}
@@ -757,7 +757,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 	 * @throws Exception *****/
 	public void identifyUgradeSection() throws Exception {
 		logInfo("Entered into identifyUgradeSection() method.");
-		List<WebElement> up = driver().findElements(By.cssSelector(upgradeSection));
+		List<WebElement> up = driver.findElements(By.cssSelector(upgradeSection));
 		int size = up.size();
 		if(size==0) {
 			System.out.println("This product does not have Upgrade section");
@@ -771,7 +771,7 @@ public class WarrantReplacementMethods  extends ProductRegistartionMethods {
 				if(eachTitle.equalsIgnoreCase(upgrade.trim())) {
 					isPresent=true;
 					scrollDown("xpath", upgradeProdBtn);
-					List<WebElement> prodBtn = driver().findElements(By.xpath(upgradeProdBtn));
+					List<WebElement> prodBtn = driver.findElements(By.xpath(upgradeProdBtn));
 					for(WebElement button :prodBtn) {
 						button.click();
 						break;
