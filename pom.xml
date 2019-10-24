@@ -165,7 +165,7 @@
          <version>2.20</version>
         <configuration>
           <suiteXmlFiles>
-            <file>ZaggSmoke.xml</file>            
+            <file>ZaggSmokeBS.xml</file>            
           </suiteXmlFiles>
           <properties>
             <property>
