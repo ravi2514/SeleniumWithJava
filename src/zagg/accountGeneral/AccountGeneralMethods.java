@@ -36,7 +36,7 @@ public class AccountGeneralMethods extends TestBase{
 		logInfo("Entered into validateTitlScreen() method");
 		Thread.sleep(2000);
 		wdWait("cssSelector", productTitle);
-		String actTitle = driver().findElement(By.cssSelector(productTitle)).getText().trim();				
+		String actTitle = driver.findElement(By.cssSelector(productTitle)).getText().trim();				
 		Assert.assertEquals(actTitle, screenTitle);	
 		
 	}

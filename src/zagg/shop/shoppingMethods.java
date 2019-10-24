@@ -309,14 +309,14 @@ public class shoppingMethods extends TestBase{
 	public void addressSuggestion_orig() throws Exception {
 		logInfo("Enter into addressSuggestion() method");
 			waitOnSpinner();
-			String wndBeforeWindow = driver().getWindowHandle();	
-			for(String w : driver().getWindowHandles()){
-				int win = driver().getWindowHandles().size();
+			String wndBeforeWindow = driver.getWindowHandle();	
+			for(String w : driver.getWindowHandles()){
+				int win = driver.getWindowHandles().size();
 				System.out.println(win+ " size");
 				
 				System.out.println("Title is "+driver.getTitle());
 				if(!w.equalsIgnoreCase(wndBeforeWindow)){
-					driver().switchTo().window(w);
+					driver.switchTo().window(w);
 					String title = getText("cssSelector", sugg);
 					System.out.println(title+" suggestion");
 					
@@ -382,19 +382,19 @@ public class shoppingMethods extends TestBase{
 	
 	public void handleAmazonPayment() throws Exception {
 		logInfo("Enter into handleAmazonPayment() method");	
-		Actions act = new Actions (driver());
+		Actions act = new Actions (driver);
 		waitOnSpinner();
 		scrollDown("cssSelector", ccRadio);
 		wdWait("cssSelector", ccRadio);
 		clickOnObject("cssSelector", total);
 		
-		WebElement ccRad= driver().findElement(org.openqa.selenium.By.cssSelector(ccRadio));
+		WebElement ccRad= driver.findElement(org.openqa.selenium.By.cssSelector(ccRadio));
 		act.moveToElement(ccRad).doubleClick().build().perform();
 		wdWait("cssSelector", amazonRadio);	
 		scrollDown("cssSelector", amazonRadio);
-		WebElement amzRad= driver().findElement(org.openqa.selenium.By.cssSelector(amazonRadio));
+		WebElement amzRad= driver.findElement(org.openqa.selenium.By.cssSelector(amazonRadio));
 		act.moveToElement(amzRad).doubleClick().build().perform();
-		WebElement amzIcon= driver().findElement(org.openqa.selenium.By.cssSelector(amzonPayIcon));
+		WebElement amzIcon= driver.findElement(org.openqa.selenium.By.cssSelector(amzonPayIcon));
 		act.moveToElement(amzIcon).doubleClick().build().perform();
 		waitOnSpinner();
 		handleAmzonWindow();
@@ -405,15 +405,15 @@ public class shoppingMethods extends TestBase{
 	
 	public void handleAmzonWindow() throws Exception{
 		logInfo("Enter into handleAmzonWindow() method");	
-		String wndBeforeWindow = driver().getWindowHandle();	
-		for(String w : driver().getWindowHandles()){
+		String wndBeforeWindow = driver.getWindowHandle();	
+		for(String w : driver.getWindowHandles()){
 			if(!w.equalsIgnoreCase(wndBeforeWindow)){
-				driver().switchTo().window(w);
+				driver.switchTo().window(w);
 				clickOnObject("cssSelector", amzonEmail);
 				enterText("cssSelector", amzonEmail,amzonUser);
 				enterText("cssSelector", amzonPassword,amzonPwd);
 				submitObject("cssSelector", amzonPassword);
-				driver().switchTo().window(wndBeforeWindow);
+				driver.switchTo().window(wndBeforeWindow);
 				System.out.println(driver.getCurrentUrl());
 				waitOnSpinner();
 				

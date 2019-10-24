@@ -1775,7 +1775,7 @@ public class ProductRegistartionMethods extends LoginMethods{
 			 scrollDown("cssSelector", continueInOptions);
 			 clickOnButton("cssSelector", continueInOptions);
 			 verifyAddressTitle(addTitleText);			
-			List <WebElement>addList = driver().findElements(By.cssSelector(getAddressCount));
+			List <WebElement>addList = driver.findElements(By.cssSelector(getAddressCount));
 			int getCount= addList.size();
 			if(getCount<=3) {
 				 clickOnObject("cssSelector", existShippingAddress);
@@ -1819,11 +1819,11 @@ public class ProductRegistartionMethods extends LoginMethods{
 			int noOfRows = rows.size();
 			System.out.println("sixe is "+noOfRows);
 			for (int i=1;i<=noOfRows;i++) {
-				String email= driver().findElement(By.cssSelector(emailBfr+i+emailAft)).getText().trim();
+				String email= driver.findElement(By.cssSelector(emailBfr+i+emailAft)).getText().trim();
 				System.out.println("email "+email);
 				if(email.equalsIgnoreCase(custEmail)) {
 					isPresent=true;
-					WebElement editCust = driver().findElement(By.cssSelector(emailBfr+i+editAft));
+					WebElement editCust = driver.findElement(By.cssSelector(emailBfr+i+editAft));
 					editCust.click();
 					break;
 				}
@@ -1840,16 +1840,16 @@ public class ProductRegistartionMethods extends LoginMethods{
 			System.out.println("loginCustomer "+loginCustomer);
 			waitOnSpinner();
 			if(loginCustomer.equalsIgnoreCase("Login as Customer")) {
-				WebElement cust = driver().findElement(By.xpath(loginAsCustomerTab));
-				Actions act = new Actions(driver());
+				WebElement cust = driver.findElement(By.xpath(loginAsCustomerTab));
+				Actions act = new Actions(driver);
 				act.click(cust).build().perform();
 				waitOnSpinner();
 				//act.moveToElement(cust).doubleClick().build().perform();
-				//driver().navigate().to(appUrl+"default/customer/account/");
-				String wndBeforeWindow = driver().getWindowHandle();	
-				for(String w : driver().getWindowHandles()){
+				//driver.navigate().to(appUrl+"default/customer/account/");
+				String wndBeforeWindow = driver.getWindowHandle();	
+				for(String w : driver.getWindowHandles()){
 					if(!w.equalsIgnoreCase(wndBeforeWindow)){
-						driver().switchTo().window(w);
+						driver.switchTo().window(w);
 						System.out.println(driver.getTitle());
 					}
 					System.out.println("Same window "+driver.getTitle());
@@ -1865,7 +1865,7 @@ public class ProductRegistartionMethods extends LoginMethods{
 			scrollDown("cssSelector", privacyChkBox);
 			String text = getText("cssSelector", privacyLabel);
 			wdWait("cssSelector", privacyChkBox);
-			WebElement chkBox= driver().findElement(By.cssSelector(privacyChkBox));
+			WebElement chkBox= driver.findElement(By.cssSelector(privacyChkBox));
 			chkBox.click();			
 		}
 		
